@@ -1,6 +1,10 @@
-import React from 'react';
+  
+import React, {FC, useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Time from "./components/time"
+import Timer from "./components/timer"
+import Counter from "./components/counter"
 
 function App() {
   return (
@@ -8,6 +12,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
@@ -18,6 +23,8 @@ function App() {
         >
           Learn React
         </a>
+        <Timer></Timer>
+        <Counter></Counter>
       </header>
     </div>
   );
