@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import Time from "./time"
-
+import "./timer.css"
 const useCountdown = (limit: number): any => {
     const [leftSec, setLeftSec]: [number, any] = useState(limit);
     let [timerObj, setTimerObj]: [any, any] = useState("")
@@ -43,22 +43,21 @@ const useCountdown = (limit: number): any => {
         }
     };
 
-    useEffect(() => {
-        setactive(false);
-        //setCountdown()
-        
-    }, []);
+    
     useEffect(() => {
         afterTimeup(leftSec);
     }, [leftSec])
+    useEffect(()=>{
+        clearInterval(timerObj)
+    },[])
 
     return [[leftSec, active], [reset, stop, start]];
 };
 
 const Timer: FC = () => {
-    const [[leftSec, active], [reset, stop, start]] = useCountdown(25)
+    const [[leftSec, active], [reset, stop, start]] = useCountdown(25 * 60)
     return (
-        <div>
+        <div className="Timer">
             <Time sec={leftSec}></Time>
             <button onClick={start}>start</button>
             <button onClick={stop}>stop</button>

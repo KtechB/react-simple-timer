@@ -12,7 +12,7 @@ type TimeProps = {
 const Time:React.FC<TimeProps> = (props) =>{
     const time = secToMMSS(props.sec)
     return(
-        <p>{time}</p>
+        <div style={{ fontSize:100}}>{time}</div>
     )
 }
 
