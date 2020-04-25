@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "deploy": "react-scripts build && gh-pages -d build"
   },
   "jest": {
     "moduleFileExtensions": [
