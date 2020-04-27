@@ -1,5 +1,5 @@
 .Timer{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
 }
 button{
     display: inline-block;
@@ -10,7 +10,7 @@ button{
   border: solid 2px #00000;
   border-radius: 3px;
   transition: .4s;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+  font-family: 'Arial Narrow Bold', sans-serif; 
   font-size:18px;
 
 }
