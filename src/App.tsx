@@ -9,10 +9,12 @@ import Counter from "./components/counter"
 function App() {
   return (
     <div className="App">
+      
       <header className="App-header">
         <h1>Simple Timer</h1>
         <Timer></Timer>
-      </header>
+        </header>
+
     </div>
   );
 }

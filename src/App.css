@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  
 }
 
 .App-logo {
@@ -12,17 +14,34 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
-  background-color: #282c34;
+  background-color: #424e66;
+  background-image: url("./Fox_background.png");
+  background-size:1000px;
+  background-repeat: no-repeat;
+  background-position:right center;  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #f8cd7d;
 }
+.App-body {
+  background-color: #282c34;
+  min-height: 100vh;
+  background-image: url("./Fox.png");
+  background-size:300px;
+  background-repeat: no-repeat;
+  background-position:right center;  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #76b3eb;
+}
+
 
 .App-link {
   color: #61dafb;
