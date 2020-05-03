@@ -24,9 +24,19 @@ const useCountdown = (limit: number): any => {
       
       audio.play();
       setCount((count:number)=> count +1)
+      if(Autoreset){
+          setLeftSec(Count%2===1 ?limit:5 * 60);
+
+      }
+      else{
+      
       clearInterval(timerObj);
       setLeftSec(Count%2===1 ?limit:5 * 60);
-      setactive(false);
+      
+
+      setactive(false);}
+      
+      
 
     }
   };
@@ -61,7 +71,7 @@ const useCountdown = (limit: number): any => {
 
   useEffect(() => {
     afterTimeup(leftSec);
-  }, [leftSec]);
+  }, [leftSec,timerObj]);
   useEffect(() => {
     clearInterval(timerObj);
   }, []);
@@ -89,7 +99,7 @@ const Timer: FC = () => {
       <button onClick={add_one_minute}>+1</button>
       <button onClick={reduce_one_minute}>-1</button>
       <button onClick={autoreset_change}>{Autoreset?"auto":"manual"}</button>
-      <p>{Count}</p>
+      <p>{Math.floor(Count/2)} cycle</p>
       
     </div>
   );
