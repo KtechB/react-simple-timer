@@ -2,10 +2,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Time from "./components/time"
 import Timer from "./components/timer"
-import Counter from "./components/counter"
-import AudioPlayer from "./components/audio"
 function App() {
   return (
     <div className="App">
