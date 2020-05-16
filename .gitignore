@@ -4,13 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
-
 # testing
 /coverage
 
 # production
 # comment out for deploy
-# /build
+/build
 
 
 # misc

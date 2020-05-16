@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
-import Time from "./time";
+import Time ,{secToMMSS}from "./time";
 import "./timer.css";
 import useAudio from "./useAudio"
+import {Helmet} from "react-helmet"
+import  Sound from "react-sound"
 const useCountdown = (limit: number): any => {
   const [audio,playing, currentTime, play, pause, jump] = useAudio(audioUrl);
   const [Autoreset, setAutoreset] = useState(true)
@@ -9,7 +11,7 @@ const useCountdown = (limit: number): any => {
   const [Count, setCount]: [number, any] = useState(0);
   let [timerObj, setTimerObj]: [any, any] = useState("");
   const [active, setactive]: [boolean, any] = useState(false);
-  
+  const [soundstatus, setSoundstateus] = useState("STOPPING")
   const setCountdown = () => {
     if (!active) {
       setTimerObj(
@@ -22,6 +24,7 @@ const useCountdown = (limit: number): any => {
   const afterTimeup = (left: number): void => {
     if (left < 0) {
       
+      setSoundstateus("PLAYING")
       audio.play();
       setCount((count:number)=> count +1)
       if(Autoreset){
@@ -54,11 +57,16 @@ const useCountdown = (limit: number): any => {
   };
   const start = () => {
     if (!active) {
+      
+    
       clearInterval(timerObj);
       setCountdown();
       setactive(true);
     }
   };
+  const load =() =>{
+    audio.play()
+  }
   const add_one_minute = () => {
     setLeftSec((sec: number) => sec + 1 * 60);
   };
@@ -70,6 +78,7 @@ const useCountdown = (limit: number): any => {
   }
 
   useEffect(() => {
+    
     afterTimeup(leftSec);
   }, [leftSec,timerObj]);
   useEffect(() => {
@@ -77,27 +86,31 @@ const useCountdown = (limit: number): any => {
   }, []);
 
   return [
-    [leftSec, active,Count,Autoreset],
-    [reset, stop, start, add_one_minute, reduce_one_minute, autoreset],
+    [leftSec, active,Count,Autoreset, soundstatus],
+    [reset, stop, start, add_one_minute, reduce_one_minute, autoreset,setSoundstateus],
   ];
 };
 
-const audioUrl = "https://on-jin.com/sound/ag/s74f90/se/e/ani_ge_suzume01.mp3";
+const audioUrl ="https://on-jin.com/sound/ag/s87651b/se/b/hito_ge_kuchibue01.mp3";
 const Timer: FC = () => {
 
-  const [playing, currentTime, play, pause, jump] = useAudio(audioUrl);
   const [
-    [leftSec, active,Count, Autoreset],
-    [reset, stop, start, add_one_minute, reduce_one_minute,autoreset_change],
+    [leftSec, active,Count, Autoreset, soundstatus],
+    [reset, stop, start, add_one_minute, reduce_one_minute,autoreset_change,setSoundstateus],
   ] = useCountdown(25 * 60);
+  
 
   return (
     <div className="Timer">
+      
+      <Helmet><title>Fox Timer</title></Helmet>
+      <Sound url={audioUrl} playStatus={"STOPPED"} onFinishedPlaying={()=> setSoundstateus("STOPPED")} ></Sound>
       <Time sec={leftSec}></Time>
       <button onClick={active?stop:start}>{active?"stop":"start"}</button>
       <button onClick={reset}>reset</button>
       <button onClick={add_one_minute}>+1</button>
       <button onClick={reduce_one_minute}>-1</button>
+      
       <button onClick={autoreset_change}>{Autoreset?"auto":"manual"}</button>
       <p>{Math.floor(Count/2)} cycle</p>
       
